@@ -3,7 +3,7 @@ from time import time
 def sum_proper_divisors(n):
     sum = 0
     # Iterate to the square root of n, we can find all factors by only iterating to sqrt(n)
-    for i in range(1, int(n**0.5)):
+    for i in range(1, int(n**0.5) + 1):
         # If n is divisible by i
         if n % i == 0:
             # Add the factor to the sum
@@ -14,7 +14,6 @@ def sum_proper_divisors(n):
                 sum += int(n // i)
 
     return sum
-
 
 def sum_amicable_numbers(upper_boundary):
     start_time = time()
@@ -31,5 +30,4 @@ def sum_amicable_numbers(upper_boundary):
     end_time = time()
     return sum , end_time - start_time
     
-
 print(sum_amicable_numbers(10000))
