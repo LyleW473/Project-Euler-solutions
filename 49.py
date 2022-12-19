@@ -7,12 +7,12 @@ def find_primes():
     # Create a list of elements to store the prime numbers up to 10000
     prime_numbers = [num for num in range(2, 9999 + 2)]
 
-    for i in range(2, int(9999 ** 0.5)): 
+    for b in range(2, int(9999 ** 0.5)): 
 
-        for j in range(i ** 2, 9999 + 2, i):
+        for c in range(b ** 2, 9999 + 2, b):
             
             # Mark composite numbers as False
-            prime_numbers[j - 2] = False
+            prime_numbers[c - 2] = False
 
     # Sort the list, removing duplicate "False" values
     prime_list = sorted(list(set(prime_numbers)))
@@ -47,7 +47,7 @@ def solve():
                         values_list = sorted([prime1, prime2, prime3])
 
                         # If the difference between the 2nd and the 1st prime is the same as the difference between the 3rd and the 2nd
-                        if (prime2 - prime1) == (prime3 - prime2):
+                        if abs(prime2 - prime1) == abs(prime3 - prime2):
 
                             # Find the 12 digit number found by concatenating the three terms in the sequence
                             three_terms_string = ""
@@ -59,4 +59,34 @@ def solve():
                             return three_terms_string, values_list, end_time - start_time
            
 three_terms_string, values_list, time_taken = solve()
+print(f"String: {int(three_terms_string)}\nAll three terms: {values_list}\nTime taken: {time_taken}")
+
+def solve_v2():
+    start_time = time()
+
+    for a in range(len(primes_list)):
+
+        for b in range(a, len(primes_list)):
+
+            for c in range(b, len(primes_list)):
+                
+                if set(str(primes_list[a])) == set(str(primes_list[b])) and set(str(primes_list[b])) == set(str(primes_list[c])) and set(str(primes_list[a])) == set(str(primes_list[c])):
+                    # If all 3 primes have the same digits
+                    if primes_list[a] != primes_list[b] and primes_list[b] != primes_list[c] and primes_list[a] != primes_list[c] and primes_list[a] != 1487:
+                        # Order them in terms of their value:
+                        values_list = sorted([primes_list[a], primes_list[b], primes_list[c]])
+
+                        # If the difference between the 2nd and the 1st prime is the same as the difference between the 3rd and the 2nd
+                        if abs(primes_list[b] - primes_list[a]) == abs(primes_list[c] - primes_list[b]):
+
+                            # Find the 12 digit number found by concatenating the three terms in the sequence
+                            three_terms_string = ""
+                            for value in values_list:
+                                # Concatenate each term to the string
+                                three_terms_string += str(value)
+
+                            end_time = time()
+                            return three_terms_string, values_list, end_time - start_time
+
+three_terms_string, values_list, time_taken = solve_v2()
 print(f"String: {int(three_terms_string)}\nAll three terms: {values_list}\nTime taken: {time_taken}")
