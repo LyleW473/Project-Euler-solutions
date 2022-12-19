@@ -2,9 +2,10 @@ from time import time
 """ 
 - Convert the numerator into a string
 - Convert the denominator into a string
-- If the numerator and denominator have common digits, remove them. If the first version of the fraction e.g. 49/98 has the same value as 4/8, it is a curious fraction
-- The numerator must always be less than the numerator
+- If the numerator and denominator have common digits, remove them. E.g. If the first version of the fraction e.g. 49/98 has the same value as 4/8, it could be a curious fraction.
+- The numerator must always be less than the denominator
 - Check if there is a curious fraction already in the list against the one we are observing.
+- If there is no other fraction with the same value, it is a curious fraction.
 - Calculate the product of the four fractions by: product of denominators / product of numerators
 """
 
@@ -16,7 +17,7 @@ def find_curious_fractions():
         # For numerator
         for n in range(1, 99 + 1):
             # For denominator
-            for d in range(n + 1, 100 + 1):
+            for d in range(n + 1, 100 + 1): # Starting at n + 1 ensures that the numerator will always be greater than the denominator (for values less than 1)
                 
                 # Assign the numerator and denominator
                 numerator = str(n)
